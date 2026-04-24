@@ -40,6 +40,10 @@ function item:init()
     self.bonus_name = "Dark/Star"
     self.bonus_icon = "ui/menu/icon/armor"
 
+    -- Elemental resistance
+    self.element = 5
+    self.element_reduce_amount = 0.66
+
     -- Equippable characters (default true for armors, false for weapons)
     self.can_equip = {
         noelle = false,
@@ -51,10 +55,6 @@ function item:init()
         ralsei = "Sh-should I wear this...?",
         noelle = "No... it's for someone... taller.",
     }
-
-    -- Elemental resistance
-    self.element = 5
-    self.element_reduce_amount = 0.66
 end
 
 return item
