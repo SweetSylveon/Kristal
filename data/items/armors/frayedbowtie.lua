@@ -42,6 +42,10 @@ function item:init()
     self.bonus_name = nil
     self.bonus_icon = nil
 
+    -- Elemental resistance
+    self.element = 6
+    self.element_reduce_amount = 0.15
+
     -- Equippable characters (default true for armors, false for weapons)
     self.can_equip = {
         susie = false,
