@@ -36,6 +36,9 @@
 ---
 ---@field bonus_color table
 ---
+---@field element integer?
+---@field element_reduce_amount number?
+---
 ---@field can_equip table<string, boolean>
 ---
 ---@field reactions table<string, string|table<string, string>>
@@ -99,6 +102,11 @@ function Item:init()
 
     -- The color of the bonus icon, always orange in DELTARUNE
     self.bonus_color = PALETTE["world_ability_icon"]
+
+    -- Element type
+    self.element = 0
+    -- Element resistance amount
+    self.element_reduce_amount = 0
 
     -- Equippable characters (default true for armors, false for weapons)
     self.can_equip = {}
@@ -292,6 +300,9 @@ function Item:isSellable() return self.can_sell end
 function Item:getStatBonuses() return self.bonuses end
 function Item:getBonusName() return self.bonus_name end
 function Item:getBonusIcon() return self.bonus_icon end
+
+function Item:getElement() return self.element end
+function Item:getElementResistance() return self.element_reduce_amount end
 
 function Item:getAttackSprite(battler, enemy, points) return battler.chara:getAttackSprite() end
 function Item:getAttackSound(battler, enemy, points) return battler.chara:getAttackSound() end
