@@ -40,6 +40,10 @@ function item:init()
     self.bonus_name = "Elec/Holy"
     self.bonus_icon = "ui/menu/icon/armor"
 
+    -- Elemental resistance
+    self.element = 1
+    self.element_reduce_amount = 0.5
+
     -- Equippable characters (default true for armors, false for weapons)
     self.can_equip = {}
 
