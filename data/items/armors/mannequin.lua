@@ -38,6 +38,10 @@ function item:init()
     self.bonus_name = "???"
     self.bonus_icon = "ui/menu/icon/armor"
 
+    -- Elemental resistance
+    self.element = 6
+    self.element_reduce_amount = 0.35
+
     -- Equippable characters (default true for armors, false for weapons, false for this item in particular)
     self.can_equip = {
         kris = true,
