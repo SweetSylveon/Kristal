@@ -41,6 +41,10 @@ function item:init()
     self.bonus_name = "$ +30%"
     self.bonus_icon = "ui/menu/icon/up"
 
+    -- Elemental resistance
+    self.element = 6
+    self.element_reduce_amount = 0.4
+
     -- Equippable characters (default true for armors, false for weapons)
     self.can_equip = {}
 
