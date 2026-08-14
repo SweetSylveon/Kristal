@@ -28,4 +28,9 @@ function item:onWorldUse()
     return false
 end
 
+function item:onToss()
+    Game.world:showText("* (The seeds stick to everything and cannot be thrown away.)")
+    return false
+end
+
 return item
