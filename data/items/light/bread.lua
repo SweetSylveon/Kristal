@@ -28,4 +28,9 @@ function item:onWorldUse()
     return false
 end
 
+function item:onToss()
+    Game.world:showText("* (Couldn't.)")
+    return false
+end
+
 return item
