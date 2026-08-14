@@ -137,7 +137,7 @@ function DebugSystem:onMousePressed(x, y, button, istouch, presses)
     if button == 3 then
         if self:selectionOpen() then
             self:closeSelection()
-        else
+        elseif Kristal.isDevMode() then
             self:openSelection()
         end
         return
@@ -1229,12 +1229,14 @@ function DebugSystem:registerDefaults()
                 function(text)
                     local money = tonumber(text)
                     if money then
-                        if Game:isLight() then
-                            Game.lw_money = Game.lw_money + money
-                        else
-                            Game.money = Game.money + money
+                        if not MathUtils.isNaN(money) and not (money == math.huge) then
+                            if Game:isLight() then
+                                Game.lw_money = Game.lw_money + money
+                            else
+                                Game.money = Game.money + money
+                            end
+                            Assets.stopAndPlaySound("bell_bounce_short")
                         end
-                        Assets.stopAndPlaySound("bell_bounce_short")
                     end
                 end
             )

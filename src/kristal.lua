@@ -101,6 +101,10 @@ function love.load(args)
         end
     end
 
+    if Kristal.Args["disable-stdout-buffer"] then
+        io.stdout:setvbuf("no")
+    end
+
     -- load the version
     Kristal.Version = SemVer(love.filesystem.read("VERSION"))
 
@@ -156,6 +160,9 @@ function love.load(args)
     -- default registry
     Registry.initialize()
     Registry.saveData()
+
+    -- register collisions
+    CollisionRegistry.refresh()
 
     -- Chapter defaults
     Kristal.ChapterConfigs = {}
@@ -1257,6 +1264,9 @@ function Kristal.clearModState()
     Assets.restoreData()
     Registry.restoreData()
 
+    -- Refresh the collision registry
+    CollisionRegistry.refresh()
+
     -- force garbage collection
     collectgarbage("collect")
 end
@@ -1595,6 +1605,9 @@ function Kristal.preInitMod(id)
 
     -- Initialize registry
     Registry.initialize()
+
+    -- Refresh collision registry
+    CollisionRegistry.refresh()
 
     -- Return true if no "preInit" explicitly returns true
     return use_callback
@@ -2197,7 +2210,7 @@ function Kristal.markDeprecated(level, name, api_type, deprecation_type, new_nam
     else
         api_name_type = api_type .. " " .. name
     end
-    local deprecation_message = string.format("Using deprecated %s %s", api_name_type, name)
+    local deprecation_message = string.format("Using deprecated %s", api_name_type)
     if deprecation_type == "replaced" then
         deprecation_message = string.format("%s (replaced by %s)", deprecation_message, new_name)
     ---@diagnostic disable-next-line: unknown-diag-code # LuaLS doesn't have unnecessary-if
